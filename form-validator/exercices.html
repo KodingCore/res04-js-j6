@@ -11,41 +11,46 @@
     
       <header>
         <div class="menu">
-          <button id="add-new-list">ADD NEW LIST</button>
+          <h1>Suscribing</h1>
+          <button id="add-new-user">ADD NEW USER</button>
         </div>
       </header>
       <main>
           <ul id="toDoListUl">
           
           </ul>
-          <div id="modal-add-list">
-            <h2>Nouvelle ToDoList</h2>
+          <form id="modal-add-user" action="#">
+            <h2>New User</h2>
             <fieldset>
-              <label for="input-name">Nom: </label>
-              <input id="input-name" type="text" name="name">
+              <label for="input-fname">First name: </label>
+              <input id="input-fname" type="text" name="input-fname" required="true">
             </fieldset>
             <fieldset>
-              <label for="input-tache1">Tâche 1: </label>
-              <input id="input-tache1" type="text" name="tache1">
+              <label for="input-lname">Last name: </label>
+              <input id="input-lname" type="text" name="input-lname" required="true">
             </fieldset>
             <fieldset>
-              <label for="input-tache2">Tâche 2: </label>
-              <input id="input-tache2" type="text" name="tache2">
+              <label for="input-nname">Nickname: </label>
+              <input id="input-nname" type="text" name="input-nname" required="true">
             </fieldset>
             <fieldset>
-              <label for="input-tache3">Tâche 3: </label>
-              <input id="input-tache3" type="text" name="tache3">
+              <label for="input-email">Email: </label>
+              <input id="input-email" type="email" name="input-email" required="true">
             </fieldset>
             <fieldset>
-              <label for="input-tache4">Tâche 4: </label>
-              <input id="input-tache4" type="text" name="tache4">
+              <label for="input-pswrd1">Password: </label>
+              <input id="input-pswrd1" type="password" name="input-pswrd1" required="true">
             </fieldset>
             <fieldset>
-              <label for="input-tache5">Tâche 5: </label>
-              <input id="input-tache5" type="text" name="tache5">
+              <label for="input-pswrd2">Confirm password: </label>
+              <input id="input-pswrd2" type="password" name="input-pswrd2" required="true">
             </fieldset>
-            <button id="valide-new-list">Valider</button>
-          </div>
+            <fieldset>
+              <label for="input-biog">biographie: </label>
+              <input id="input-biog" type="textarea" name="input-biog"/>
+            </fieldset>
+            <input type="submit" id="valide-new-user" value="Valider">
+          </form>
         </main>
       <script type="module" src="index.js"></script>
       <!--<script type="application/javascript" src="correction.js"></script>-->

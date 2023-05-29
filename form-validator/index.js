@@ -1,49 +1,45 @@
-// import {Pizza} from "./pizza.js";
-import {ToDoList} from "./toDoList.js";
+import {CreateUser} from "./createUser.js";
 
 const main = document.querySelector("main");
 
-let toDoListUl;
-const addNewListBtn = document.querySelector("#add-new-list");
-const modalAddList = document.querySelector("#modal-add-list");
-const validModalAdd = document.querySelector("#valide-new-list");
+let userUl;
+const addNewListBtn = document.querySelector("#add-new-user");
+const modalAddUser = document.querySelector("#modal-add-user");
+const validModalAdd = document.querySelector("#valide-new-user");
 
-const inputName = modalAddList.querySelector("#input-name");
-const inputTache1 = modalAddList.querySelector("#input-tache1");
-const inputTache2 = modalAddList.querySelector("#input-tache2");
-const inputTache3 = modalAddList.querySelector("#input-tache3");
-const inputTache4 = modalAddList.querySelector("#input-tache4");
-const inputTache5 = modalAddList.querySelector("#input-tache5");
+const inputFName = modalAddUser.querySelector("#input-fname");
+const inputLName = modalAddUser.querySelector("#input-lname");
+const inputNName = modalAddUser.querySelector("#input-nname");
+const inputEmail = modalAddUser.querySelector("#input-email");
+const inputPswrd1 = modalAddUser.querySelector("#input-pswrd1");
+const inputPswrd2 = modalAddUser.querySelector("#input-pswrd2");
+const inputBiog = modalAddUser.querySelector("#input-biog");
 
-let toDoList;
-let tabToDoLists = [];
+
+let tabUsers = [];
 
 
 window.addEventListener("DOMContentLoaded", function(){
-    // const veggie = new Pizza("Veggie", "tomate", "fromage", "légumes");
-    // const meattie = new Pizza("Meattie", "tomate", "fromage", "viande");
-    // const fishie = new Pizza("Fishie", "tomate", "fromage", "poisson");
-    
-    // console.log("La pizza " + veggie.name + " est composé de " + veggie.ingredient1 + ", de " + veggie.ingredient2 + ", et de " + veggie.ingredient3);
-    // console.log("La pizza " + meattie.name + " est composé de " + meattie.ingredient1 + ", de " + meattie.ingredient2 + ", et de " + meattie.ingredient3);
-    // console.log("La pizza " + fishie.name + " est composé de " + fishie.ingredient1 + ", de " + fishie.ingredient2 + ", et de " + fishie.ingredient3);
-    
+
     btnListener();
     
 })
-
+let user;
 function btnListener(){
+    
+    
     addNewListBtn.addEventListener("click", function(){
-        modalAddList.style.display = "flex";
+        console.log("hello");
+        modalAddUser.style.display = "flex";
     })
-    validModalAdd.addEventListener("click", function(){
-        if(inputName.value != "" && inputTache1.value != "" && inputTache2.value != "" && inputTache3.value != "" && inputTache4.value != "" && inputTache5.value != ""){
-            toDoList = new ToDoList(inputName.value, inputTache1.value, inputTache2.value, inputTache3.value, inputTache4.value, inputTache5.value);
-            tabToDoLists.push(toDoList);
-            displayNewlist();
-            modalAddList.style.display = "none";
+    modalAddUser.addEventListener("submit", function(event){
+        event.preventDefault();
+        if(inputPswrd1.value != inputPswrd2.value){
+            alert("la confirmation du mot de pass est érronnée");
         }else{
-            alert("Vous devez remplir tout les champs!");
+            user = new CreateUser(inputFName.value, inputLName.value, inputNName.value, inputEmail.value, inputPswrd1.value, inputPswrd2.value, inputBiog.value);
+            tabUsers.push(user);
+            displayNewlist();
         }
     })
 }
@@ -52,37 +48,43 @@ function resetInputs(){
     let inputs = document.querySelectorAll("input");
     
     for(let input of inputs){
-        input.value = "";
+        if(input != validModalAdd){
+            input.value = "";
+        }
     }
 }
 
 function displayNewlist(){
-    
-    toDoListUl = document.createElement("ul");
-    toDoListUl.classList.add("tab");
-    main.appendChild(toDoListUl);
-    if(tabToDoLists.length%2 === 0){
-        toDoListUl.style.gridColumnStart = "3";
-    }
-    for(let i=0; i < 6; i++){
-        let newLi = document.createElement("li");
-        newLi.style.marginBottom = "0.5rem";
-        toDoListUl.appendChild(newLi);
-        if(i === 0){
-            newLi.textContent = toDoList.listName;
-            newLi.style.fontSize = "1.5rem";
-            newLi.style.textDecoration = "underline";
-        }else if(i === 1){
-            newLi.textContent = toDoList.tache1;
-        }else if(i === 2){
-            newLi.textContent = toDoList.tache2;
-        }else if(i === 3){
-            newLi.textContent = toDoList.tache3;
-        }else if(i === 4){
-            newLi.textContent = toDoList.tache4;
-        }else if(i === 5){
-            newLi.textContent = toDoList.tache5;
+
+        userUl = document.createElement("ul");
+        userUl.classList.add("tab");
+        main.appendChild(userUl);
+        if(tabUsers.length%2 === 0){
+            userUl.style.gridColumnStart = "3";
         }
-    }
+        
+        for(let i=0; i < 7; i++){
+            let newLi = document.createElement("li");
+            newLi.style.marginBottom = "0.5rem";
+            userUl.appendChild(newLi);
+            if(i === 0){
+                newLi.textContent = "Pseudo: " + user.nName;
+                newLi.style.fontSize = "1.5rem";
+                newLi.style.textDecoration = "underline";
+            }else if(i === 1){
+                newLi.textContent = "Nom: " + user.fName;
+            }else if(i === 2){
+                newLi.textContent = "Prénom: " + user.lName;
+            }else if(i === 3){
+                newLi.textContent = "Email: " + user.email;
+            }else if(i === 4){
+                newLi.textContent = "MDP: " + user.pswrd1;
+            }else if(i === 5){
+                newLi.textContent = "MDP conf: " + user.pswrd2;
+            }else if(i === 6){
+                newLi.textContent = "Bio: " + user.biog;
+            }
+        }
     resetInputs();
+    modalAddUser.style.display = "none";
 }

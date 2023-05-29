@@ -24,9 +24,17 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: solid;
+    background-color: #fff;
 }
 
-#modal-add-list{
+h1{
+    font-size: 3rem;
+    margin-right: 2rem;
+    text-decoration: underline;
+}
+
+#modal-add-user{
     position: fixed;
     display: none;
     width: 33%;
@@ -57,7 +65,7 @@ fieldset{
     margin: 0.25rem;
 }
 
-button{
+button, #valide-new-user{
     margin-top: 1.5rem;
     width: 150px;
     height: 40px;
@@ -67,7 +75,7 @@ button{
     margin-bottom: 1rem;
 }
 
-button:hover{
+button:hover, #valide-new-user:hover{
     cursor: pointer;
 }
 
